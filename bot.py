@@ -1,5 +1,6 @@
 import telebot
 import requests
+import logging
 
 bot = telebot.TeleBot('749857527:AAGMZgPom3lE7t_wHcxDC9YmTgRju_6Ll40')
 
@@ -14,4 +15,4 @@ def handlle_text(message):
          bot.send_message(message.from_user.id, 'Heres your link')
 
 
-bot.polling(none_stop=True, interval=0)
+bot.polling(none_stop=True, interval=0, timeout=3)
