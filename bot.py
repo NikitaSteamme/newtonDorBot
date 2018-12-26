@@ -1,18 +1,16 @@
-import telebot
-import requests
-import logging
+#!/usr/bin/env python
+# coding: utf-8
+from __future__ import unicode_literals
+import json
 
-bot = telebot.TeleBot('749857527:AAGMZgPom3lE7t_wHcxDC9YmTgRju_6Ll40')
+from twx.botapi import TelegramBot, ReplyKeyboardMarkup
+from flask import Flask, request
+app = Flask(__name__)
 
-@bot.message_handler(commands=['open'])
-def handlle_text (message):
-         bot.send_message(message.from_user.id, 'Opening')
-         r = requests.get("https://google.com")
-         print(r.status_code)
-
-@bot.message_handler(commands=['link'])
-def handlle_text(message):
-         bot.send_message(message.from_user.id, 'Heres your link')
-
-
-bot.polling(none_stop=True, interval=0, timeout=3)
+bot = TelegramBot('bot110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw')
+@app.route("/telegram/", methods=['POST'])
+def hello():
+    message = json.loads(request.data)
+    if message['message']['text'] == '/ping':
+        bot.send_message(message['message']['chat']['id'], 'Pong!').wait()
+    return 'ok'
