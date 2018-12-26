@@ -7,7 +7,7 @@ from twx.botapi import TelegramBot, ReplyKeyboardMarkup
 from flask import Flask, request
 app = Flask(__name__)
 
-bot = TelegramBot('bot110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw')
+bot = TelegramBot('bot749857527:AAGMZgPom3lE7t_wHcxDC9YmTgRju_6Ll40')
 @app.route("/telegram/", methods=['POST'])
 def hello():
     message = json.loads(request.data)
